@@ -26,7 +26,7 @@ resource "aws_instance" "frontend" {
 }
 
 resource "aws_route53_record" "frontend" {
-  zone_id =Z09176702TOWG3ZLR2YN1
+  zone_id ="Z09176702TOWG3ZLR2YN1"
   name    = "frontend-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
