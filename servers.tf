@@ -66,7 +66,7 @@ resource "aws_instance" "instance" {
 
 resource "aws_route53_record" "records" {
   for_each = var.components
-  zone_id ="Z09176702TOWG3ZLR2YN1"
+  zone_id = "Z09176702TOWG3ZLR2YN1"
   name    = "${each.value["name"]}-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
