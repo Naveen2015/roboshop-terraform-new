@@ -15,8 +15,8 @@ variable "components" {
       name = "frontend"
       instance_type = "t3.micro"
     }
-    mongod = {
-      name = "mongo"
+    mongodb = {
+      name = "mongodb"
       instance_type = "t3.micro"
     }
     catalogue = {
