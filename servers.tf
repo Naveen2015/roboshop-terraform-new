@@ -1,19 +1,16 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.81.0"
-    }
-  }
-}
+
 data "aws_ami" "example" {
   most_recent = true
   owners = ["973714476881"]
   name_regex       = "Centos-8-DevOps-Practice"
   }
 
+data "aws_security_group" "allow-all" {
+  name = "allow-all"
+}
+
 output "data" {
-  value = data.aws_ami.example.image_id
+  value = data.aws_security_group.allow-all.id
 }
 
 resource "aws_instance" "frontend" {
