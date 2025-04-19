@@ -34,8 +34,8 @@ redis = {
 name = "redis"
 instance_type = "t3.micro"
 }
-shipment = {
-name = "shipment"
+shipping = {
+name = "shipping"
 instance_type = "t3.small"
 }
 payment = {
