@@ -23,10 +23,12 @@ instance_type = "t3.micro"
 mysql = {
 name = "mysql"
 instance_type = "t3.micro"
+  password = "Roboshop@1"
 }
 rabbitmq = {
 name = "rabbitmq"
 instance_type = "t3.micro"
+  password = "roboshop123"
 }
 redis = {
 name = "redis"
@@ -39,5 +41,6 @@ instance_type = "t3.small"
 payment = {
 name = "payment"
 instance_type = "t3.micro"
+  password = "roboshop123"
 }
 }
