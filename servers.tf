@@ -1,51 +1,9 @@
-terraform {
-  required_providers {
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.3"
-    }
-  }
-}
-resource "aws_instance" "instance" {
+
+module "servers" {
+  source = "./module"
   for_each = var.components
-  ami = data.aws_ami.ami.image_id
+  component_name = each.value["name"]
+  env = var.env
   instance_type = each.value["instance_type"]
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name = each.value["name"]
-  }
-
-
-}
-
-resource "null_resource" "provisioner" {
-  depends_on = [aws_instance.instance,aws_route53_record.records]
-  for_each = var.components
-
-  provisioner "remote-exec" {
-
-    connection {
-      type     = "ssh"
-      user     = "centos"
-      password = "DevOps321"
-      host     = aws_instance.instance[each.value["name"]].private_ip
-
-    }
-    inline = [
-      "rm -rf roboshop",
-      "git clone https://github.com/Naveen2015/roboshop-shell-new.git",
-      "cd /roboshop-shell-new",
-      "sudo bash ${each.value["name"]}.sh ${lookup(each.value,"password","null")}"
-
-    ]
-  }
-}
-
-resource "aws_route53_record" "records" {
-  for_each = var.components
-  zone_id = "Z09176702TOWG3ZLR2YN1"
-  name    = "${each.value["name"]}-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.instance[each.value["name"]].private_ip]
+  password = lookup(each.value,"password","null")
 }
