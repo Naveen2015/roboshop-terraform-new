@@ -1,11 +1,7 @@
 env = "dev"
-components = {
+app_servers = {
   frontend = {
     name = "frontend"
-    instance_type = "t3.micro"
-  }
-  mongodb = {
-    name = "mongodb"
     instance_type = "t3.micro"
   }
   catalogue = {
@@ -20,7 +16,22 @@ components = {
     name = "cart"
     instance_type = "t3.micro"
   }
-  mysql = {
+  shipping = {
+    name = "shipping"
+    instance_type = "t3.small"
+    password = "Roboshop@1"
+  }
+  payment = {
+    name = "payment"
+    instance_type = "t3.micro"
+    password = "roboshop123"
+  }
+}
+database_servers = {
+  mongodb = {
+    name = "mongodb"
+    instance_type = "t3.micro"
+  }mysql = {
     name = "mysql"
     instance_type = "t3.micro"
     password = "Roboshop@1"
@@ -33,15 +44,5 @@ components = {
   redis = {
     name = "redis"
     instance_type = "t3.micro"
-  }
-  shipping = {
-    name = "shipping"
-    instance_type = "t3.small"
-    password = "Roboshop@1"
-  }
-  payment = {
-    name = "payment"
-    instance_type = "t3.micro"
-    password = "roboshop123"
   }
 }
