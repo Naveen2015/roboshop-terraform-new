@@ -34,6 +34,7 @@ resource "null_resource" "provisioner" {
 }
 
 resource "aws_route53_record" "records" {
+  depends_on = [aws_instance.instance]
   zone_id = "Z09176702TOWG3ZLR2YN1"
   name    = "${var.component_name}-${var.env}.kruthikadevops.online"
   type    = "A"
