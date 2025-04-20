@@ -37,6 +37,7 @@ components = {
   shipping = {
     name = "shipping"
     instance_type = "t3.small"
+    password = "Roboshop@1"
   }
   payment = {
     name = "payment"
