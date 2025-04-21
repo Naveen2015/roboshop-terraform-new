@@ -31,7 +31,8 @@ database_servers = {
   mongodb = {
     name = "mongodb"
     instance_type = "t3.micro"
-  }mysql = {
+  }
+  mysql = {
     name = "mysql"
     instance_type = "t3.micro"
     password = "Roboshop@1"
