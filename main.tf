@@ -3,6 +3,6 @@ module "vpc" {
 
   for_each = var.vpc
   cidr_block = each.value["cidr_block"]
-  tags = local.tags
+  tags = merge(local.tags, { Name = "${var.env}-vpc"})
 
 }
