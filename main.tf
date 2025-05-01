@@ -6,3 +6,7 @@ module "vpc" {
   tags = merge(local.tags, { Name = "${var.env}-vpc"})
 
 }
+
+output "vpc_main_module" {
+  value = module.vpc
+}
