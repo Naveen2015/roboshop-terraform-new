@@ -14,3 +14,8 @@ output "vpc_main_module" {
   value = module.vpc
 }
 
+# module "app" {
+#   source = "git::https://github.com/Naveen2015/tf-module-app-new.git"
+#   for_each = var.app
+# }
+
