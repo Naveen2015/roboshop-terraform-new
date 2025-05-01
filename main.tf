@@ -10,7 +10,7 @@ module "vpc" {
 }
 
 
-# output "vpc_main_module" {
-#   value = module.vpc
-# }
+output "vpc_main_module" {
+  value = module.vpc
+}
 
