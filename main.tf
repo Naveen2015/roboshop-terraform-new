@@ -20,7 +20,7 @@ module "app" {
   instance_type = each.value["instance_type"]
   name = each.value["name"]
   env = var.env
-
+  tags = local.tags
   desired_capacity = each.value["desired_capacity"]
   max_size = each.value["max_size"]
   min_size = each.value["min_size"]
