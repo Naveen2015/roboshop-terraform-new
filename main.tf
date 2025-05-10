@@ -21,7 +21,7 @@ module "app" {
   name = each.value["name"]
   env = var.env
 
-  desired_capactiy = each.value["desired_capacity"]
+  desired_capacityy = each.value["desired_capacity"]
   max_size = each.value["max_size"]
   min_size = each.value["min_size"]
   bastion_cidr = var.bastion_cidr
