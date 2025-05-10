@@ -6,8 +6,9 @@ module "vpc" {
   subnets = each.value["subnets"]
   tags = local.tags
   env = var.env
-  //default_vpc_id = var.default_vpc_id
-  //default_vpc_cidr = var.default_vpc_cidr
+  default_vpc_id = var.default_vpc_id
+  default_vpc_cidr = var.default_vpc_cidr
+  default_route_table_id = var.default_route_table_id
 
 }
 
