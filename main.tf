@@ -45,6 +45,8 @@ module "docdb" {
   vpc_id = local.vpc_id
   allow_db_cidr = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_db_cidr"],null),"subnet_cidrs",null)
   kms_arn = var.kms_arn
+  instance_count = each.value["instance_count"]
+  instance_class = each.value["instance_class"]
 
 }
 
