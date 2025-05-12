@@ -29,10 +29,27 @@ module "app" {
   min_size = each.value["min_size"]
   bastion_cidr = var.bastion_cidr
   subnet_ids = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["subnet_name"],null),"subnet_ids",null)
-  vpc_id = lookup(lookup(module.vpc,"main",null),"vpc_id",null)
+  vpc_id = local.vpc_id
   allow_app_cidr = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_app_cidr"],null),"subnet_cidrs",null)
 
 
 }
+
+module "docdb" {
+  source   = "git::https://github.com/Naveen2015/tf-module-docdb-new.git"
+  for_each = var.docdb
+  tags = local.tags
+  env = var.env
+  subnets = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["subnet_name"],null),"subnet_ids",null)
+  engine_version = each.value["engine_version"]
+  vpc_id = local.vpc_id
+  allow_db_cidr = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_db_cidr"],null),"subnet_cidrs",null)
+  kms_arn = var.kms_arn
+
+}
+
+
+
+
 
 
