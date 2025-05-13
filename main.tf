@@ -63,6 +63,35 @@ module "rds" {
   instance_count = each.value["instance_count"]
   instance_class = each.value["instance_class"]
 
+}
+
+module "elastic" {
+  source = "git::https://github.com/Naveen2015/tf-module-elasticache.git"
+  for_each = var.elasticache
+  env = var.env
+  tags = local.tags
+  subnets = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["subnet_name"],null),"subnet_ids",null)
+  engine_version = each.value["engine_version"]
+  vpc_id = local.vpc_id
+  allow_db_cidr = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_db_cidr"],null),"subnet_cidrs",null)
+  kms_arn = var.kms_arn
+  replicas_per_node_group = each.value["replicas_per_node_group"]
+  num_node_groups = each.value["num_node_groups"]
+  node_type = each.value["node_type"]
+
+}
+
+module "rabbitmq" {
+  source = "git::https://github.com/Naveen2015/tf-module-amazon-mq.git"
+  for_each = var.rabbitmq
+  env = var.env
+  tags = local.tags
+  subnets = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["subnet_name"],null),"subnet_ids",null)
+  instance_type = each.value["instance_type"]
+  vpc_id = local.vpc_id
+  allow_db_cidr = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_db_cidr"],null),"subnet_cidrs",null)
+  kms_arn = var.kms_arn
+  bastion_cidr = var.bastion_cidr
 
 }
 

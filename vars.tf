@@ -8,3 +8,5 @@ variable "default_route_table_id" {}
 variable "docdb" {}
 variable "kms_arn" {}
 variable "rds" {}
+variable "elasticache" {}
+variable "rabbitmq" {}
