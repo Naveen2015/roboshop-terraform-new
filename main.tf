@@ -50,6 +50,22 @@ module "docdb" {
 
 }
 
+module "rds" {
+  source = "git::https://github.com/Naveen2015/tf-module-rds-new.git"
+  for_each = var.rds
+  env = var.env
+  tags = local.tags
+  subnets = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["subnet_name"],null),"subnet_ids",null)
+  engine_version = each.value["engine_version"]
+  vpc_id = local.vpc_id
+  allow_db_cidr = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_db_cidr"],null),"subnet_cidrs",null)
+  kms_arn = var.kms_arn
+  instance_count = each.value["instance_count"]
+  instance_class = each.value["instance_class"]
+
+
+}
+
 
 
 
