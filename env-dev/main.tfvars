@@ -4,6 +4,7 @@ default_vpc_id = "vpc-0d0bd5e5843b157e8"
 default_vpc_cidr = "172.31.0.0/16"
 default_route_table_id = "rtb-0c5496d94302cb8e9"
 kms_arn = "arn:aws:kms:us-east-1:071312222500:key/2c5cbdcc-7978-489b-88b7-1f2df783e6c7"
+domain_id = "Z09176702TOWG3ZLR2YN1"
 vpc = {
 main = {
   cidr_block = "10.0.0.0/16"
