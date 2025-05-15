@@ -110,7 +110,7 @@ module "app" {
   app_port = each.value["app_port"]
   domain_name = var.domain_name
   priority = each.value["priority"]
-  listener_arn = lookup(lookup(module.alb,each.value["lb_type"],null),listener_arn,null)
+  listener_arn = lookup(lookup(module.alb,each.value["lb_type"],null),"listener_arn",null)
 
 
 
