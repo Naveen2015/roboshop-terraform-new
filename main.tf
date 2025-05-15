@@ -17,23 +17,7 @@ output "vpc_main_module" {
   value = module.vpc
 }
 
-# module "app" {
-#   source   = "git::https://github.com/Naveen2015/tf-module-app-new.git"
-#   for_each = var.app
-#   instance_type = each.value["instance_type"]
-#   name = each.value["name"]
-#   env = var.env
-#   tags = local.tags
-#   desired_capacity = each.value["desired_capacity"]
-#   max_size = each.value["max_size"]
-#   min_size = each.value["min_size"]
-#   bastion_cidr = var.bastion_cidr
-#   subnet_ids = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["subnet_name"],null),"subnet_ids",null)
-#   vpc_id = local.vpc_id
-#   allow_app_cidr = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_app_cidr"],null),"subnet_cidrs",null)
-#
-#
-# }
+
 
 module "docdb" {
   source   = "git::https://github.com/Naveen2015/tf-module-docdb-new.git"
@@ -107,6 +91,27 @@ module "alb" {
   subnets = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["subnet_name"],null),"subnet_ids",null)
   allow_alb_cidr = each.value["name"] == "public" ? [ "0.0.0.0/0" ] : lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_alb_cidr"],null),"subnet_cidrs",null)
 }
+
+# module "app" {
+  #depends_on = [module.vpc,module.docdb,module.rds,module.elastic,module.rabbitmq,module.alb]
+#   source   = "git::https://github.com/Naveen2015/tf-module-app-new.git"
+#   for_each = var.app
+#   instance_type = each.value["instance_type"]
+#   name = each.value["name"]
+#   env = var.env
+#   tags = local.tags
+#   desired_capacity = each.value["desired_capacity"]
+#   max_size = each.value["max_size"]
+#   min_size = each.value["min_size"]
+#   bastion_cidr = var.bastion_cidr
+#   subnet_ids = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["subnet_name"],null),"subnet_ids",null)
+#   vpc_id = local.vpc_id
+#   allow_app_cidr = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_app_cidr"],null),"subnet_cidrs",null)
+#
+#
+# }
+
+
 
 
 
