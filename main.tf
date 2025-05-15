@@ -108,7 +108,7 @@ module "app" {
   vpc_id = local.vpc_id
   allow_app_cidr = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_app_cidr"],null),"subnet_cidrs",null)
   app_port = each.value["app_port"]
-  domain_name = var.domain_namme
+  domain_name = var.domain_name
   priority = each.value["priority"]
   listener_arn = lookup(lookup(lookup(module.alb,each.value["lb_type"],null),"listener_arn",null))
 

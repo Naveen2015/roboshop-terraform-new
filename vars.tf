@@ -12,4 +12,4 @@ variable "elasticache" {}
 variable "rabbitmq" {}
 variable "domain_id" {}
 variable "alb" {}
-variable "domain_namme" {}
+variable "domain_name" {}
