@@ -111,6 +111,8 @@ module "app" {
   domain_name = var.domain_name
   priority = each.value["priority"]
   listener_arn = lookup(lookup(module.alb,each.value["lb_type"],null),"listener_arn",null)
+ lb_dns_name = lookup(lookup(module.alb,each.value["lb_type"],null),"dns_name",null)
+  dns_name = each.value["name"] == "frontend" ? each.value["dns_name"] : "${each.value["name"]}-${var.env}"
 
 
 
