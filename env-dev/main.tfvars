@@ -5,6 +5,7 @@ default_vpc_cidr = "172.31.0.0/16"
 default_route_table_id = "rtb-0c5496d94302cb8e9"
 kms_arn = "arn:aws:kms:us-east-1:071312222500:key/2c5cbdcc-7978-489b-88b7-1f2df783e6c7"
 domain_id = "Z09176702TOWG3ZLR2YN1"
+domain_namme = "kruthikadevops.online"
 vpc = {
 main = {
   cidr_block = "10.0.0.0/16"
@@ -45,6 +46,8 @@ app = {
     min_size = 2
     allow_app_cidr = "public"
     app_port = 80
+    priority = 1
+    lb_type = "public"
   }
   catalogue = {
     name = "catalogue"
@@ -55,6 +58,8 @@ app = {
     min_size = 2
     allow_app_cidr = "web"
     app_port = 8080
+    priority = 1
+    lb_type = "private"
   }
 }
 
