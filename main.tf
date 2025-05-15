@@ -96,6 +96,20 @@ module "rabbitmq" {
 
 }
 
+module "alb" {
+  source = "git::https://github.com/Naveen2015/tf-module-alb-new.git"
+  for_each = var.alb
+  name = each.value["name"]
+  env = var.env
+  vpc_id = local.vpc_id
+  tags = local.tags
+  internal = each.value["internal"]
+  subnets = lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["subnet_name"],null),"subnet_ids",null)
+  allow_alb_cidr = each.value["name"] == "public" ? [ "0.0.0.0/0" ] : lookup(lookup(lookup(lookup(module.vpc,"main",null),"subnets",null),each.value["allow_alb_cidr"],null),"subnet_cidrs",null)
+}
+
+
+
 
 
 
