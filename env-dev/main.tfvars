@@ -73,7 +73,7 @@ app = {
     min_size = 1
     allow_app_cidr = "app"
     app_port = 8080
-    priority = 1
+    priority = 2
     lb_type = "private"
     parameters = ["docdb"]
   }
@@ -86,7 +86,7 @@ app = {
     min_size = 1
     allow_app_cidr = "app"
     app_port = 8080
-    priority = 1
+    priority = 3
     lb_type = "private"
     parameters = []
   }
@@ -99,7 +99,7 @@ app = {
     min_size = 1
     allow_app_cidr = "app"
     app_port = 8080
-    priority = 1
+    priority = 4
     lb_type = "private"
     parameters = ["rds"]
   }
@@ -112,7 +112,7 @@ app = {
     min_size = 1
     allow_app_cidr = "app"
     app_port = 8080
-    priority = 1
+    priority = 5
     lb_type = "private"
     parameters = []
   }
