@@ -97,6 +97,7 @@ module "app" {
   source   = "git::https://github.com/Naveen2015/tf-module-app-new.git"
   for_each = var.app
   kms_arn = var.kms_arn
+  parameters = each.value["parameters"]
   instance_type = each.value["instance_type"]
   name = each.value["name"]
   env = var.env
