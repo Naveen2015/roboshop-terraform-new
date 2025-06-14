@@ -124,7 +124,7 @@ module "eks" {
   source = "git::https://github.com/Naveen2015/tf-module-eks.git"
 
   Env = var.env
-  version = 1.32
+  eks_version = 1.32
   PRIVATE_SUBNET_IDS = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), "app", null), "subnet_ids", null)
   PUBLIC_SUBNET_IDS  = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), "public", null), "subnet_ids", null)
   DESIRED_SIZE       = 2
